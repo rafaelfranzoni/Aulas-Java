@@ -9,10 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+
+import br.com.testes.rafael.TesteLerArquivoTxt;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 public class JifInserirTxt extends JInternalFrame {
 	private JTextField JtfCaminho;
@@ -54,6 +58,25 @@ public class JifInserirTxt extends JInternalFrame {
 		JtfCaminho.setText("Ex: C:\\Users\\Rafa\\Documents\\31-01-2015.txt");
 		
 		JButton btnIr = new JButton("Ir");
+		btnIr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nome = JtfCaminho.getText();
+				String dia = null;
+				String mes = null;
+				String ano = null;
+				String hora = null;
+				String matricula = null;
+				String data = null;
+				int cont = 0;
+				try {
+					TesteLerArquivoTxt.LerArquivo(nome, dia, mes, ano, hora, matricula, data, cont);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
